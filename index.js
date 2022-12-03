@@ -4,8 +4,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./router/router");
-const { Client } = require("pg");
-const bcrypt = require("bcrypt");
 const db = require("./db.config/db.config");
 require("dotenv").config();
 
