@@ -14,7 +14,7 @@ const register = async (req, res) => {
   var insertData = `INSERT INTO unhan_modul_17 VALUES (DEFAULT, $1, $2, $3);`;
 
   await db.query(insertData, [username, email, hashPassword], function (err) {
-    if (err) return res.status(500).send("Data not Valid!");
+    if (err) return res.status(500).send(err);
     return res.status(200).send("Data successfully inserted");
   });
 };
