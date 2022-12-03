@@ -10,7 +10,8 @@ SECRET = process.env.SECRET;
 
 const register = async (req, res) => {
   const { username, email, password } = req.body;
-  const hashPassword = await bcrypt.hash(password, 10);
+  const salt = bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hash(password, salt);
   var insertData = `INSERT INTO unhan_modul_17 VALUES (DEFAULT, $1, $2, $3);`;
 
   await db.query(insertData, [username, email, hashPassword], function (err) {
