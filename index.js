@@ -33,7 +33,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-PORT = process.env.PORT || 6031;
+PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Application is running on ${PORT}!! `);
 });
