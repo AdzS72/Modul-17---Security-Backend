@@ -49,7 +49,7 @@ const login = async (req, res) => {
     }
   } catch (e) {
     console.log(e);
-    res.send("Account not found, check your email");
+    res.send(e);
     return;
   }
 };
@@ -59,7 +59,7 @@ const logout = async (res) => {
     return res.clearCookie("JWT").send("Logout success");
   } catch (err) {
     console.log(err.message);
-    return res.status(500).send(err.message);
+    return res.status(500).send(err);
   }
 };
 
