@@ -41,7 +41,7 @@ const login = async (req, res) => {
       };
 
       const token = jwt.sign(data, SECRET);
-      res.cookie("JWT", token, { httpOnly: false, sameSite: "strict" }).json({
+      res.cookie("JWT", token, { httpOnly: true, sameSite: "strict" }).json({
         id,
         username,
         email,
