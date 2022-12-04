@@ -22,6 +22,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, password);
   try {
     var getData = await db.query(`SELECT * FROM unhan_modul_17 WHERE email = $1;`, [email]);
 
