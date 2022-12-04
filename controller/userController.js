@@ -22,8 +22,11 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, password);
   try {
     var getData = await db.query(`SELECT * FROM unhan_modul_17 WHERE email = $1;`, [email]);
+
+    res.send(getData);
 
     var hash = getData.rows[0]["password"];
     var id = getData.rows[0]["id"];
@@ -38,7 +41,7 @@ const login = async (req, res) => {
       };
 
       const token = jwt.sign(data, SECRET);
-      res.cookie("JWT", token, { httpOnly: false, sameSite: "strict" }).json({
+      res.cookie("JWT", token, { httpOnly: true, sameSite: "strict" }).json({
         id,
         username,
         email,
@@ -49,7 +52,7 @@ const login = async (req, res) => {
     }
   } catch (e) {
     console.log(e);
-    res.send("Account not found, check your email");
+    res.send(e.message);
     return;
   }
 };
@@ -59,7 +62,7 @@ const logout = async (res) => {
     return res.clearCookie("JWT").send("Logout success");
   } catch (err) {
     console.log(err.message);
-    return res.status(500).send(err.message);
+    return res.status(500).send(err);
   }
 };
 
