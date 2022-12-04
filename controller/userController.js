@@ -26,6 +26,8 @@ const login = async (req, res) => {
   try {
     var getData = await db.query(`SELECT * FROM unhan_modul_17 WHERE email = $1;`, [email]);
 
+    res.send(getData);
+
     var hash = getData.rows[0]["password"];
     var id = getData.rows[0]["id"];
     var username = getData.rows[0]["username"];
