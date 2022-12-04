@@ -49,7 +49,7 @@ const login = async (req, res) => {
     }
   } catch (e) {
     console.log(e);
-    res.send(e);
+    res.send(e.message);
     return;
   }
 };
